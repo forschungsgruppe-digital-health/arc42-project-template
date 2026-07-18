@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/forschungsgruppe-digital-health/arc42-project-template/compare/v0.1.1...v0.2.0) (2026-07-18)
+
+
+### Features
+
+* **skills:** add dependency-scanner + security-scanner setup wizards + security-reviewer ([#2](https://github.com/forschungsgruppe-digital-health/arc42-project-template/issues/2)) ([ffcf5bc](https://github.com/forschungsgruppe-digital-health/arc42-project-template/commit/ffcf5bccae82e4004e15344821c6879109a36349))
+
 ## [0.1.1](https://github.com/forschungsgruppe-digital-health/arc42-project-template/compare/v0.1.0...v0.1.1) (2026-07-18)
 
 
