@@ -118,8 +118,8 @@ import re, os, subprocess
 files=[f for f in subprocess.check_output(
         ["git","ls-files","*.md","*.mdx","AGENTS.md","CLAUDE.md"]).decode().split()
        if not f.startswith(("node_modules/","build/","dist/"))]
-def slug(h):
-    s=re.sub(r'[^\w\s-]','',h.strip().lower()); return re.sub(r'\s+','-',s)
+def slug(h):  # GitHub slug: strip punctuation, then each space -> one hyphen (do NOT collapse)
+    s=re.sub(r'[^\w\s-]','',h.strip().lower()); return re.sub(r'\s','-',s)
 slugs={}
 for f in files:
     seen={}; hs=set()
