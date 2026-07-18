@@ -1,0 +1,31 @@
+# .templatesyncignore — starting point for a FRESH child scaffold that wants MECHANICAL
+# tooling sync from the template via AndreasAugustin/actions-template-sync.
+#
+# The mature FGDH child repos (pds-query-broker / cross-hub-patientportal /
+# fttp-fhir-dispatcher) do NOT mechanically sync — they share only the skills/ toolkit and
+# use the `template-updater` skill (+ the template-sync-check notifier) instead, because a
+# whole-repo file sync from this doc-skeleton template would pull files that don't belong
+# in a real project. Keep this file only if you enable actions-template-sync.
+#
+# Rule of thumb: sync TOOLING (skills/**, shared workflows), never CONTENT.
+
+# Content & project-specific — the child owns these:
+docs/arc42/*.md
+docs/adr/**
+README.md
+AGENTS.md
+CLAUDE.md
+CHANGELOG.md
+version.txt
+.release-please-manifest.json
+release-please-config.json
+.arc42-template.json
+LICENSE
+LICENSE-docs.md
+
+# Dated report snapshots (keep the convention doc):
+docs/reports/*.md
+!docs/reports/README.md
+
+# Child-customized skills — add your own so a sync never clobbers them, e.g.:
+# skills/security-reviewer/**
