@@ -72,6 +72,15 @@ The portable form is **Agent Skills** (`skills/<name>/SKILL.md`, [agentskills.io
   scaffolds them (default: release-please + SemVer + Conventional Commits).
 - **`branching-strategist`** — set up a branching strategy; first run presents the options and scaffolds
   them (default: trunk-based + squash + protected `main`).
+- **`dependency-scanner`** — set up (or change) CI dependency/CVE/supply-chain scanning; first run
+  detects the stack + visibility, presents the options (Dependabot/Renovate, Trivy/Grype/OSV, Scorecard,
+  SBOM) and scaffolds the config + an ADR.
+- **`security-scanner`** — set up (or change) CI security review (secret scanning, SAST, AI PR review);
+  first run presents the options (gitleaks, CodeQL/Semgrep, claude-code-security-review) and scaffolds
+  the workflows + installs `security-reviewer` + an ADR.
+- **`security-reviewer`** — read-only, authorized security review of this system: STRIDE + a checklist
+  (authz/tenancy, secrets, injection, crypto, PII, deps, container, DoS) + triage of the scanner output
+  → a dated `docs/reports/` report + fixes. Findings are leads a human confirms.
 - **`grilling`** / **`grill-me`** — a relentless interview that stress-tests a plan/decision before you
   commit; decisions stay yours.
 
