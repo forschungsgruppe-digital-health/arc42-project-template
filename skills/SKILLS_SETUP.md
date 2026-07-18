@@ -13,6 +13,7 @@ frontmatter, plus Claude-specific extension fields that other agents safely igno
 - **`dependency-scanner`** — set up CI dependency/CVE/supply-chain scanning (first run asks the options).
 - **`security-scanner`** — set up CI security review — secrets, SAST, AI PR review (first run asks); installs `security-reviewer`.
 - **`security-reviewer`** — read-only security review (STRIDE + checklist + scanner triage → dated report).
+- **`template-updater`** — reconcile this repo with the latest template release (pull shared tooling, preserve content); pairs with the `template-sync-check` drift notifier + `.arc42-template.json` stamp.
 - **`grilling`** / **`grill-me`** — a relentless interview to stress-test a plan or decision.
 
 ## Tool wiring

@@ -40,6 +40,7 @@ LICENSE-docs.md    CC BY-SA 4.0 (the arc42 documentation)
 | [`dependency-scanner`](skills/dependency-scanner/SKILL.md) | Set up CI dependency/CVE/supply-chain scanning; first run detects the stack + asks the options (Dependabot/Renovate, Trivy, Scorecard, SBOM) and scaffolds them |
 | [`security-scanner`](skills/security-scanner/SKILL.md) | Set up CI security review (secret scanning, SAST, AI PR review); first run asks the options and scaffolds the workflows + installs `security-reviewer` |
 | [`security-reviewer`](skills/security-reviewer/SKILL.md) | Read-only security review: STRIDE + checklist + scanner triage → a dated report + fixes; findings are human-confirmed leads |
+| [`template-updater`](skills/template-updater/SKILL.md) | Reconcile this repo with the latest template release — pull shared tooling (skills + CI) while preserving your content; opens a PR + updates `.arc42-template.json` |
 | [`grilling`](skills/grilling/SKILL.md) / [`grill-me`](skills/grill-me/SKILL.md) | Interview you relentlessly to stress-test a plan or decision before you commit to it |
 
 How each tool finds them: **Claude Code** via `.claude/skills/`, **Codex/Cursor/Gemini** via
@@ -59,6 +60,25 @@ See [skills/SKILLS_SETUP.md](skills/SKILLS_SETUP.md).
    differently, run **`branching-strategist`** and **`release-manager`**.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the branching, PR, and release workflow.
+
+## Staying up to date with the template
+
+Repos created from this template are disconnected from it after creation (GitHub templates are
+one-time scaffolding). To keep the **shared tooling** (skills + CI setup) current without clobbering
+your own content, the template ships a lightweight update loop:
+
+- **`.arc42-template.json`** — a stamp recording the template release your repo is aligned with.
+- **`.github/workflows/template-sync-check.yml`** — a monthly **drift notifier**: it compares your
+  stamp to the template's latest release and opens a tracking **issue** when you're behind (it never
+  edits files).
+- **`template-updater`** skill — the reconciler: it pulls the shared skills + CI-setup changes into
+  your repo **while preserving your content and any customized skills**, opens a PR, and updates the
+  stamp. Run it when the notifier issue appears (or any time).
+
+For a *fresh* scaffold that wants mechanical file sync instead, `.templatesyncignore` is a ready
+starting point for [`actions-template-sync`](https://github.com/AndreasAugustin/actions-template-sync)
+(sync tooling, ignore content). The mature FGDH child repos use the skill + notifier, not mechanical
+sync.
 
 ## License
 

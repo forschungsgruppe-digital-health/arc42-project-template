@@ -81,6 +81,9 @@ The portable form is **Agent Skills** (`skills/<name>/SKILL.md`, [agentskills.io
 - **`security-reviewer`** — read-only, authorized security review of this system: STRIDE + a checklist
   (authz/tenancy, secrets, injection, crypto, PII, deps, container, DoS) + triage of the scanner output
   → a dated `docs/reports/` report + fixes. Findings are leads a human confirms.
+- **`template-updater`** — reconcile this repo with the latest arc42-project-template release: pull the
+  shared tooling (skills + CI setup) while preserving this repo's content + customizations; opens a PR and
+  updates `.arc42-template.json`. Triggered by the `template-sync-check` drift issue or run manually.
 - **`grilling`** / **`grill-me`** — a relentless interview that stress-tests a plan/decision before you
   commit; decisions stay yours.
 
