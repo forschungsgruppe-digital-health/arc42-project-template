@@ -37,6 +37,9 @@ LICENSE-docs.md    CC BY-SA 4.0 (the arc42 documentation)
 | [`docs-auditor`](skills/docs-auditor/SKILL.md) | Audit ALL docs against five bars — complete, consistent, error-free, understandable, usable — with ready-to-apply fixes; read-only |
 | [`release-manager`](skills/release-manager/SKILL.md) | Set up CI release management; first run asks the options (SemVer/CalVer, release-please/…) and scaffolds them |
 | [`branching-strategist`](skills/branching-strategist/SKILL.md) | Set up a branching strategy; first run asks the options (trunk-based/GitHub Flow/…) and scaffolds them |
+| [`dependency-scanner`](skills/dependency-scanner/SKILL.md) | Set up CI dependency/CVE/supply-chain scanning; first run detects the stack + asks the options (Dependabot/Renovate, Trivy, Scorecard, SBOM) and scaffolds them |
+| [`security-scanner`](skills/security-scanner/SKILL.md) | Set up CI security review (secret scanning, SAST, AI PR review); first run asks the options and scaffolds the workflows + installs `security-reviewer` |
+| [`security-reviewer`](skills/security-reviewer/SKILL.md) | Read-only security review: STRIDE + checklist + scanner triage → a dated report + fixes; findings are human-confirmed leads |
 | [`grilling`](skills/grilling/SKILL.md) / [`grill-me`](skills/grill-me/SKILL.md) | Interview you relentlessly to stress-test a plan or decision before you commit to it |
 
 How each tool finds them: **Claude Code** via `.claude/skills/`, **Codex/Cursor/Gemini** via

@@ -10,6 +10,9 @@ frontmatter, plus Claude-specific extension fields that other agents safely igno
 - **`docs-auditor`** — audit all docs (complete/consistent/error-free/understandable/usable); read-only.
 - **`release-manager`** — set up CI-based release management (first run asks the options).
 - **`branching-strategist`** — set up a branching strategy (first run asks the options).
+- **`dependency-scanner`** — set up CI dependency/CVE/supply-chain scanning (first run asks the options).
+- **`security-scanner`** — set up CI security review — secrets, SAST, AI PR review (first run asks); installs `security-reviewer`.
+- **`security-reviewer`** — read-only security review (STRIDE + checklist + scanner triage → dated report).
 - **`grilling`** / **`grill-me`** — a relentless interview to stress-test a plan or decision.
 
 ## Tool wiring
