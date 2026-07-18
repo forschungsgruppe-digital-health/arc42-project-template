@@ -1,0 +1,33 @@
+name: pr-title
+
+# Because PRs are squash-merged, the PR title becomes the commit on main and drives
+# release-please. Enforce that it is a valid Conventional Commit (ADR-0002 / ADR-0003).
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  lint-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Conventional Commit types allowed in PR titles.
+          types: |
+            feat
+            fix
+            perf
+            docs
+            refactor
+            test
+            build
+            ci
+            chore
+            style
+            revert

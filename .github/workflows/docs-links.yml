@@ -1,0 +1,57 @@
+name: docs-links
+
+# Mechanical documentation check (the docs-auditor link/anchor pass): every relative
+# link AND #anchor in the Markdown docs must resolve. Keeps the docs navigable.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - "**/*.md"
+      - ".github/workflows/docs-links.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check relative links and anchors
+        run: |
+          python3 - <<'PY'
+          import re, os, subprocess, sys
+          files=[f for f in subprocess.check_output(
+                  ["git","ls-files","*.md","*.mdx","AGENTS.md","CLAUDE.md"]).decode().split()
+                 if not f.startswith(("node_modules/","build/","dist/"))]
+          def slug(h):
+              s=re.sub(r'[^\w\s-]','',h.strip().lower()); return re.sub(r'\s+','-',s)
+          slugs={}
+          for f in files:
+              seen={}; hs=set()
+              for ln in open(f,encoding="utf-8"):
+                  m=re.match(r'#{1,6}\s+(.*)', ln)
+                  if not m: continue
+                  b=slug(m.group(1)); n=seen.get(b,0); seen[b]=n+1
+                  hs.add(b if n==0 else f"{b}-{n}")
+              slugs[f]=hs
+          L=re.compile(r'\]\(([^)]+)\)'); broken=[]
+          for f in files:
+              text=open(f,encoding="utf-8").read()
+              text=re.sub(r'```.*?```','',text,flags=re.S)
+              text=re.sub(r'~~~.*?~~~','',text,flags=re.S)
+              text=re.sub(r'`[^`]*`','',text)
+              for t in L.findall(text):
+                  if t.startswith(("http","mailto:","tel:")): continue
+                  path,_,frag=t.partition('#'); path=path.split('?')[0]
+                  target=f if path=="" else os.path.normpath(os.path.join(os.path.dirname(f),path))
+                  if path!="" and not os.path.exists(target):
+                      broken.append(f"{f}: {t} (missing file)"); continue
+                  if frag and target in slugs and frag not in slugs[target]:
+                      broken.append(f"{f}: {t} (missing anchor)")
+          if broken:
+              print("BROKEN links/anchors:"); print(*broken, sep="\n"); sys.exit(1)
+          print(f"OK: all relative links and anchors resolve across {len(files)} docs")
+          PY
