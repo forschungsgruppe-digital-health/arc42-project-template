@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/forschungsgruppe-digital-health/arc42-project-template/compare/v0.2.0...v0.3.0) (2026-07-18)
+
+
+### Features
+
+* template-update loop (stamp + drift notifier + template-updater skill) ([#4](https://github.com/forschungsgruppe-digital-health/arc42-project-template/issues/4)) ([d59aec9](https://github.com/forschungsgruppe-digital-health/arc42-project-template/commit/d59aec92f9303144963f35ca2d163937e2e77ab9))
+
 ## [0.2.0](https://github.com/forschungsgruppe-digital-health/arc42-project-template/compare/v0.1.1...v0.2.0) (2026-07-18)
 
 
